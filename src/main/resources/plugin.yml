@@ -1,0 +1,17 @@
+name: Portals
+main: org.kitteh.portals.Portals
+website: http://kitteh.org
+authors: [ifunny,mbaxter]
+version: 1.0-SNAPSHOT
+permissions:
+  portals.everyone:
+    description: Yes for everyone
+    default: true
+  portals.reload:
+    description: Reload stuff
+    default: op
+commands:
+  portals:
+    usage: Don't panic
+    permission: portals.reload
+    permission-message: No permission.

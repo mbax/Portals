@@ -1,0 +1,29 @@
+### Portals ###
+#
+# This is how it goes:
+#  You can name the portal anything you want. In the example it's named 'example'
+#    Just give each portal a different name.
+#  Define whether it's along the X or Z dimension.
+#  Next, define its shape. The leftmost column is the lowest X or Z (depending on horizontalByX)
+#  Define it's lowest X Y and Z values and the world it's in.
+#  target is the server it will send players to
+#  permission can be ANY NODE you want it to check. 
+#    I suggest not choosing one used by another plugin as that can have bad results depending on load order
+#    By default any node you give will be true for ops only unless otherwise granted,
+#      except for "portals.everyone" which is true for everyone automagically
+#
+# Enjoy! :3
+#
+example:
+  horizontalByX: true
+  shape: |
+    XOOX
+    OOOO
+    OOOO
+    XOOX
+  world: 'world'
+  x: 100 # Lowest X
+  y: 70 # Lowest Y
+  z: 100 # Lowest Z
+  target: hub # Target server
+  permission: portals.everyone # Can be ANY node, not just portals.something. portals.everyone is true by default
