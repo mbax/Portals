@@ -29,8 +29,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -60,6 +63,15 @@ public class Portals extends JavaPlugin implements Listener {
 
     private final HashSet<PortalArea> portalAreas = new HashSet<PortalArea>();
     private final HashSet<PortalPlayer> players = new HashSet<PortalPlayer>();
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if ((args.length == 1) && args[0].equalsIgnoreCase("reload")) {
+            this.loadPortalAreas();
+            sender.sendMessage(ChatColor.AQUA + "Portals reloaded");
+        }
+        return true;
+    }
 
     @Override
     public void onDisable() {
@@ -116,7 +128,8 @@ public class Portals extends JavaPlugin implements Listener {
 
     private void loadPortalAreas() {
         this.getDataFolder().mkdirs();
-        YamlConfiguration config = YamlConfiguration.loadConfiguration(new File(this.getDataFolder(),"portals.yml"));
+        final YamlConfiguration config = YamlConfiguration.loadConfiguration(new File(this.getDataFolder(), "portals.yml"));
+        this.portalAreas.clear();
         for (final String name : config.getKeys(false)) {
             final ConfigurationSection portal = config.getConfigurationSection(name);
             final int baseX = portal.getInt("x", 0);
