@@ -2,7 +2,7 @@ name: Portals
 main: org.kitteh.portals.Portals
 website: http://kitteh.org
 authors: [ifunny,mbaxter]
-version: 1.0-SNAPSHOT
+version: '${project.version}'
 permissions:
   portals.everyone:
     description: Yes for everyone
