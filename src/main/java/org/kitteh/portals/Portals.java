@@ -52,11 +52,7 @@ public class Portals extends JavaPlugin implements Listener {
         public void run() {
             final Iterator<PortalPlayer> iterator = Portals.this.players.iterator();
             while (iterator.hasNext()) {
-                final PortalPlayer player = iterator.next();
-                if (player.check()) {
-                    iterator.remove();
-                    return;
-                }
+                iterator.next().check();
             }
         }
     }

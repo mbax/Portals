@@ -27,16 +27,14 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class PortalPlayer {
-    private boolean inPortal;
     private Location lastNonPortal;
     private final Portals portals;
     private final Player player;
 
-    PortalPlayer(Player player, boolean inPortal, Portals portals) {
+    PortalPlayer(Player player, boolean startedInPortal, Portals portals) {
         this.portals = portals;
         this.player = player;
-        this.inPortal = inPortal;
-        if (!inPortal) {
+        if (!startedInPortal) {
             this.lastNonPortal = player.getLocation();
         }
     }
@@ -44,9 +42,9 @@ public class PortalPlayer {
     /**
      * @return true if player has teleported and should be untracked
      */
-    boolean check() {
+    void check() {
         final PortalArea portal = this.portals.getPortalForPlayer(this.player);
-        if ((portal != null) && !this.inPortal) {
+        if ((portal != null) && this.lastNonPortal != null) {
             float yaw = this.lastNonPortal.getYaw();
             if ((yaw += 180) > 360) {
                 yaw -= 360;
@@ -59,13 +57,11 @@ public class PortalPlayer {
                     PortalPlayer.this.player.sendPluginMessage(PortalPlayer.this.portals, "RubberBand", portal.getDestination().getBytes());
                 }
             });
-            return true;
+            return;
         }
-        if ((portal == null) && !this.inPortal) {
-            this.inPortal = false;
+        if (portal == null) {
             this.lastNonPortal = this.player.getLocation();
         }
-        return false;
     }
 
     String getName() {
