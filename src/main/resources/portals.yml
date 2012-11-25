@@ -21,7 +21,7 @@ example:
     OOOO
     OOOO
     XOOX
-  world: 'world'
+  world: world
   x: 100 # Lowest X
   y: 70 # Lowest Y
   z: 100 # Lowest Z

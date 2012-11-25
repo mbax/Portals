@@ -12,6 +12,6 @@ permissions:
     default: op
 commands:
   portals:
-    usage: Don't panic
+    usage: /portals reload
     permission: portals.reload
     permission-message: No permission.
