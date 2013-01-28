@@ -54,7 +54,7 @@ public class PortalPlayer {
             this.portals.getServer().getScheduler().scheduleSyncDelayedTask(this.portals, new Runnable() {
                 @Override
                 public void run() {
-                    PortalPlayer.this.player.sendPluginMessage(PortalPlayer.this.portals, "RubberBand", portal.getDestination().getBytes());
+                    PortalPlayer.this.player.sendPluginMessage(PortalPlayer.this.portals, "BungeeCord", portal.getDestination());
                 }
             });
             return;

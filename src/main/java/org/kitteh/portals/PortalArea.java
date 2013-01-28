@@ -23,6 +23,9 @@
  */
 package org.kitteh.portals;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.HashSet;
 
 import org.bukkit.Location;
@@ -31,18 +34,25 @@ import org.bukkit.entity.Player;
 public class PortalArea {
 
     private final HashSet<Location> locations;
-    private final String destination;
+    private final byte[] destination;
     private final String permission;
     private final String name;
 
     PortalArea(HashSet<Location> locations, String name, String destination, String permission) {
         this.locations = locations;
-        this.destination = destination;
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream(12);
+        DataOutputStream stream = new DataOutputStream(bytes);
+        try {
+            stream.writeUTF("Connect");
+            stream.writeUTF(destination);
+        } catch (IOException e) {
+        }
+        this.destination = bytes.toByteArray();
         this.permission = permission;
         this.name = name;
     }
 
-    String getDestination() {
+    byte[] getDestination() {
         return this.destination;
     }
 
