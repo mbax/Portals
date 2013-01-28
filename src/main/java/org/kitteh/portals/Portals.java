@@ -91,7 +91,7 @@ public class Portals extends JavaPlugin implements Listener {
             this.getLogger().info("         \\( | | | )   __{*~*~*~*}__    ^//_/-/__///");
             this.getLogger().info("           `\"\" \"\"`   `-------------`            ((");
         }
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "RubberBand");
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         this.getServer().getPluginManager().registerEvents(this, this);
         this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new PortalCheck(), 4, 4);
         for (final Player player : this.getServer().getOnlinePlayers()) {
